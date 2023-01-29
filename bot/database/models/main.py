@@ -1,4 +1,6 @@
+from .BaseModel import TestModel
+
 
 def register_models() -> None:
-    
-    pass
+    TestModel()
+

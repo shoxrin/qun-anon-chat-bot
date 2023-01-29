@@ -9,3 +9,5 @@ class DBConfig:
     DBNAME: Final = environ.get('DBNAME', 'leskod_chatbot')
     DBUSERNAME: Final = environ.get('DBUSERNAME', 'leskod_chatbot')
     DBUSERPASSWORD: Final = environ.get('DBUSERPASSWORD', 'superpass')
+    
+    postgres_url = f'postgresql://{DBUSERNAME}:{DBUSERPASSWORD}@{DBHOST}/{DBNAME}'
