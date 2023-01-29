@@ -1,1 +1,2 @@
-from .main import BaseModel
+from .main import db
+from .main import TimedBaseModel

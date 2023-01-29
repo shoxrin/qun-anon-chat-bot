@@ -6,8 +6,8 @@ class TgKeys:
     
 class DBConfig:
     DBHOST: Final = environ.get('DBHOST', '127.0.0.1')
-    DBNAME: Final = environ.get('DBNAME', 'leskod_chatbot')
-    DBUSERNAME: Final = environ.get('DBUSERNAME', 'leskod_chatbot')
+    DBNAME: Final = environ.get('DBNAME', 'leskodchatbot')
+    DBUSERNAME: Final = environ.get('DBUSERNAME', 'leskod')
     DBUSERPASSWORD: Final = environ.get('DBUSERPASSWORD', 'superpass')
     
     postgres_url = f'postgresql://{DBUSERNAME}:{DBUSERPASSWORD}@{DBHOST}/{DBNAME}'

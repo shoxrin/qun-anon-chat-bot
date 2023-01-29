@@ -1,6 +1,9 @@
-from .BaseModel import TestModel
+from .UserModel import UserModel
+from .GroupModel import GroupModel
 
 
 def register_models() -> None:
-    TestModel()
+    UserModel()
+    GroupModel()
+    
 

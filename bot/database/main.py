@@ -1,3 +1,5 @@
+import datetime
+from typing import List
 from gino import Gino
 import sqlalchemy as sa
 
@@ -17,5 +19,16 @@ class BaseModel(db.Model):
         }
         values_str = " ".join(f'{name}={value!r}' for name, value in values.items())
         return f'<{model} {values_str}>'
+    
+class TimedBaseModel(BaseModel):
+    __abstract__ = True
+    
+    created_at = db.Column(db.DateTime(True), server_default = db.func.now())
+    update_at = db.Column(
+        db.DateTime(True),
+        default = datetime.datetime.utcnow,
+        onupdate = datetime.datetime.utcnow,
+        server_default = db.func.now()
+    )
 
 
