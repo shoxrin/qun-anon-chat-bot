@@ -5,7 +5,7 @@ class TgKeys:
     TOKEN: Final = environ.get('TOKEN', '5513966790:AAHY7zpvASd6CArlWDSDpsI6Oy31YRIoUfY')
     
 class DBConfig:
-    DBHOST: Final = environ.get('DBHOST', '127.0.0.1')
+    DBHOST: Final = environ.get('DBHOST', '192.168.0.11')
     DBNAME: Final = environ.get('DBNAME', 'leskodchatbot')
     DBUSERNAME: Final = environ.get('DBUSERNAME', 'leskod')
     DBUSERPASSWORD: Final = environ.get('DBUSERPASSWORD', 'superpass')

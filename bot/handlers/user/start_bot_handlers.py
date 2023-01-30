@@ -15,10 +15,9 @@ def start_bot_handler(dp: Dispatcher) -> None:
                 await message.answer(text=f'Привет, {user.user_firstname}!\n'
                                     f'Что умеет этот бот?\n'
                                     f'Ничего, пшел нахуй еблан!!!', reply_markup=create_user_kb())
-        except:
+        except Exception:
             await user_methods.add_user(message.from_user.id, str(message.from_user.first_name), 
-                                        str(message.from_user.last_name), 10000,
-                                        False, False
+                                        str(message.from_user.last_name)
                                     )
             await message.answer(text=f'Привет!'
                                 f'Что умеет этот бот?'

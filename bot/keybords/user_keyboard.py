@@ -4,8 +4,8 @@ def create_user_kb():
     user_kb = ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
     
     user_buttons = (
-        'Добавить',
-        'Баланс',
+        'Создать чат', 'Найти чат',
+        'Баланс', 'Топ чатов',
         'Инфо',
     )
 

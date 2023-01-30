@@ -11,7 +11,7 @@ class UserModel(TimedBaseModel):
     user_firstname = Column(String(250))
     user_lastname = Column(String(250))
     user_rank = Column(Integer)
-    user_balance = Column(Integer)
+    user_balance = Column(Integer, default = 0)
     status = Column(String(30))
     staus_muted = Column(Boolean)
     status_toxic = Column(Boolean)

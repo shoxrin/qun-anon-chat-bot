@@ -34,7 +34,7 @@ class TimedBaseModel(BaseModel):
         server_default = db.func.now()
     )
     
-async def on_startup(dp: Dispatcher):
+async def on_startup():
     print('Подключение к бд!')
     await db.set_bind(DBConfig.postgres_url)
     if input('Deted database?(y/n): ') == 'y':

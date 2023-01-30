@@ -12,7 +12,7 @@ from bot.database import on_startup
 
 
 async def __on_start_up(dp: Dispatcher) -> None:
-    await on_startup(dp)
+    await on_startup()
     register_models()
     #register_all_filtres(dp)
     register_all_handlers(dp)

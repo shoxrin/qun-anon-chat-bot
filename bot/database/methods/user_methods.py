@@ -6,8 +6,8 @@ from bot.database.models import UserModel
 async def add_user(user_id: int, user_firstname: str, user_lastname: str):
     try:
         user = UserModel(user_id=user_id, user_role='user', user_firstname=user_firstname, 
-                        user_lastname=user_lastname, user_balance=0, status='Active',
-                        staus_muted=False, status_toxic=False
+                        user_lastname=user_lastname, user_rank=0, user_balance=0, status='Active',
+                        staus_muted=False, status_toxic=False, count_words=0, count_toxic_words=0
                     )
         await user.create()
     except UniqueViolationError as ex:
