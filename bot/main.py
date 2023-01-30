@@ -8,13 +8,12 @@ from bot.misc import TgKeys, DBConfig
 from bot.handlers import register_all_handlers
 from bot.database import db
 from bot.database.models import register_models
-from bot.database import __on_start
+from bot.database import on_startup
 
 
 async def __on_start_up(dp: Dispatcher) -> None:
-    await __on_start(dp)
+    await on_startup(dp)
     register_models()
-    db.create_all()
     #register_all_filtres(dp)
     register_all_handlers(dp)
 

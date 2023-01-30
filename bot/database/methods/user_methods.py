@@ -3,12 +3,15 @@ from asyncpg import UniqueViolationError
 from bot.database import db
 from bot.database.models import UserModel
 
-async def add_user(user_id: int, name: str, balance: int, update_name: str):
+async def add_user(user_id: int, user_firstname: str, user_lastname: str):
     try:
-        user = UserModel(user_id=user_id, name=name, update_name=update_name, balance=balance)
+        user = UserModel(user_id=user_id, user_role='user', user_firstname=user_firstname, 
+                        user_lastname=user_lastname, user_balance=0, status='Active',
+                        staus_muted=False, status_toxic=False
+                    )
         await user.create()
-    except UniqueViolationError:
-        print('Пользователь не добавлен!')
+    except UniqueViolationError as ex:
+        print('Пользователь не добавлен!', ex)
         
 async def select_all_users():
     users = await UserModel.query.gino.all()
