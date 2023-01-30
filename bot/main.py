@@ -8,10 +8,11 @@ from bot.misc import TgKeys, DBConfig
 from bot.handlers import register_all_handlers
 from bot.database import db
 from bot.database.models import register_models
+from bot.database import __on_start
 
 
 async def __on_start_up(dp: Dispatcher) -> None:
-    await db.set_bind(DBConfig.postgres_url)
+    await __on_start(dp)
     register_models()
     db.create_all()
     #register_all_filtres(dp)

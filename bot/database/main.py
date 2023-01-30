@@ -2,6 +2,9 @@ import datetime
 from typing import List
 from gino import Gino
 import sqlalchemy as sa
+from aiogram import Dispatcher
+
+from bot.misc import DBConfig
 
 
 db = Gino()
@@ -30,5 +33,9 @@ class TimedBaseModel(BaseModel):
         onupdate = datetime.datetime.utcnow,
         server_default = db.func.now()
     )
-
+    
+async def __on_start(dp: Dispatcher):
+    print('Подключение к бд!')
+    await db.set_bind(DBConfig.postgres_url)
+    print('Подключение успешно!')
 
