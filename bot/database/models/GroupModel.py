@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, Boolean, String, sql
 from bot.database import TimedBaseModel
 
 class GroupModel(TimedBaseModel):
-    __tablename__ = 'group'
+    __tablename__ = 'Group'
     
     group_id = Column(Integer, primary_key = True)
     group_name = Column(String(250))

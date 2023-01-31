@@ -1,5 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton, KeyboardButton,  ReplyKeyboardRemove
 
+
+#Main user menu
 def create_user_kb():
     user_kb = ReplyKeyboardMarkup(
         keyboard=[
@@ -24,22 +26,53 @@ def create_user_kb():
         
     return user_kb
 
-def create_user_balance_kb():
-    pass
+#Button for opening user menu
+open_menu_kb = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text='Открыть меню'),
+        ]
+    ],
+    resize_keyboard=True
+)
 
-def create_group_kb():
-    filter_group_kb = InlineKeyboardMarkup(row_width=1)
-    
-    filter_group_buttons = (
-        'Топ 15 чатов', 'Топ кол-во участников',
-        'Топ от Lescod',
+#Innline menu for command 'balance'
+def create_user_balance_kb():
+    balance_kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Отправить другу', callback_data='send_money_friend'),
+                InlineKeyboardButton(text='Как получать?', callback_data='get_money_info')
+            ]
+        ]
     )
     
-    for buttons in filter_group_buttons:
-        filter_group_kb.add(
-            InlineKeyboardButton(text=buttons, callback_data='show_top')
-        )
-        
+    return balance_kb
+
+#Inline menu for command 'find_chat'
+def create_group_kb():
+    filter_group_kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Топ 15 чатов', callback_data='find_top_fifteen'),
+                InlineKeyboardButton(text='Топ от Leskod|Чат бота', callback_data='find_top_on_leskod')
+            ],
+            [
+                InlineKeyboardButton(text='Топ по кол-ву активных участников', callback_data='find_top_active_users')
+            ]
+        ]
+    )
+          
     return filter_group_kb
 
-return_kb = ReplyKeyboardMarkup().add(KeyboardButton(text='Назад'))
+#Inline keyboard to find a partner
+def create_find_partner():
+    find_partner_kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Найти анонимно', callback_data='find_anonim_chat'),
+            ]
+        ]
+    )
+    
+    return find_partner_kb

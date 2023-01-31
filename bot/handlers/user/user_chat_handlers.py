@@ -2,6 +2,7 @@ from aiogram import Dispatcher
 from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove
 from aiogram.dispatcher.filters import Text
 
+from bot.keybords import open_menu_kb
 from bot.keybords import create_user_kb
 from bot.keybords import create_user_balance_kb
 from bot.database.methods import user_methods as commands
@@ -10,7 +11,11 @@ def user_chat_handlers(dp: Dispatcher):
     
     @dp.message_handler(Text('Закрыть меню'))
     async def show_top_groups(message: Message):
-        await message.answer(text='/menu - чтобы снова отктрыть меню', reply_markup=ReplyKeyboardRemove())
+        await message.answer(text='/menu или Открыть меню - чтобы снова отктрыть меню', reply_markup=open_menu_kb)
+        
+    @dp.message_handler(Text('Открыть меню'))
+    async def show_top_groups(message: Message):
+        await message.answer(text='Открываем меню.', reply_markup=create_user_kb())
         
     @dp.message_handler(commands=['menu'])
     async def show_menu(message: Message):
