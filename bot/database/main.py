@@ -4,7 +4,7 @@ from gino import Gino
 import sqlalchemy as sa
 from aiogram import Dispatcher
 
-from bot.misc import DBConfig
+from bot.misc import settings
 
 
 db = Gino()
@@ -36,7 +36,7 @@ class TimedBaseModel(BaseModel):
     
 async def on_startup():
     print('Подключение к бд!')
-    await db.set_bind(DBConfig.postgres_url)
+    await db.set_bind(settings.POSTGRES_URI)
     if input('Deted database?(y/n): ') == 'y':
         await db.gino.drop_all()
         await db.gino.create_all()
