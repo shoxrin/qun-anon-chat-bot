@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Boolean, String, sql
+from sqlalchemy import Column, Integer, Boolean, String, sql, BigInteger
 
 from bot.database import TimedBaseModel
 
@@ -6,7 +6,7 @@ from bot.database import TimedBaseModel
 class UserModel(TimedBaseModel):
     __tablename__ = 'Users'
     
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(BigInteger, primary_key=True)
     user_role = Column(String(100))
     user_firstname = Column(String(250))
     user_lastname = Column(String(250))
