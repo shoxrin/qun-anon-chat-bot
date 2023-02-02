@@ -16,7 +16,7 @@ async def __on_start_up(dp: Dispatcher) -> None:
     register_models()
     #register_all_filtres(dp)
     register_all_handlers(dp)
-
+    
 def start_bot():
     bot = Bot(token=settings.TGTOKEN, parse_mode='HTML')
     dp = Dispatcher(bot, storage=MemoryStorage())

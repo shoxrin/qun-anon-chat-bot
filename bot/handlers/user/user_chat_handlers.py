@@ -2,10 +2,13 @@ from aiogram import Dispatcher
 from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove
 from aiogram.dispatcher.filters import Text
 
+from bot.misc import get_random_group_id
+from bot.keybords import create_conn_chat
 from bot.keybords import open_menu_kb
 from bot.keybords import create_user_kb
 from bot.keybords import create_user_balance_kb
 from bot.database.methods import user_methods as commands
+from bot.database.methods import group_methods as group_commands
 
 def user_chat_handlers(dp: Dispatcher):
     
@@ -28,7 +31,17 @@ def user_chat_handlers(dp: Dispatcher):
                              f'/menu - открывает меню бота\n',
                              reply_markup=create_user_kb()
                             )
+    
+    @dp.message_handler(Text('Найти чат'))
+    async def find_group_chat(message: Message):
+        await message.answer(text='Я нашел чат. Подключиться?', reply_markup=create_conn_chat())
         
+    @dp.callback_query_handler(text='connect_chat')
+    async def connect_chat(callback: CallbackQuery):
+        groups_id = await group_commands()
+        group_id = get_random_group_id(groups_id)
+        await callback.answer(text=f'{group_id}')
+    
     @dp.message_handler(Text('Профиль'))
     async def show_user_info(message: Message):
         user = await commands.select_user(message.from_user.id)
