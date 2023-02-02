@@ -70,7 +70,8 @@ def create_find_partner():
     find_partner_kb = InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text='Найти анонимно', callback_data='find_anonim_chat'),
+                InlineKeyboardButton(text='Найти чат', callback_data='find_anonim_chat'),
+                InlineKeyboardButton(text='Создать чат', callback_data='create_anonim_chat'),
             ]
         ]
     )
@@ -88,3 +89,15 @@ def create_join_partner():
     )
     
     return join_partner_kb
+
+def create_conn_anon_chat():
+    conn_chat_kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Да!', callback_data='connect_anon_chat'),
+                InlineKeyboardButton(text='Нет!', callback_data='close_find_anon_chat')
+            ]
+        ]
+    )
+    
+    return conn_chat_kb
