@@ -1,11 +1,11 @@
-from aiogram import Dispatcher
+from aiogram import Dispatcher, Bot
 from aiogram.types import Message
 
 from bot.keybords import create_user_kb
 from bot.database.methods import user_methods
 
 
-def start_bot_handler(dp: Dispatcher) -> None:
+def start_bot_handler(dp: Dispatcher, b: Bot) -> None:
     
     @dp.message_handler(commands=['start'])
     async def hello_user(message: Message):

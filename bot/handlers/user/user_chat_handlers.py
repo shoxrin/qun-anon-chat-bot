@@ -1,4 +1,4 @@
-from aiogram import Dispatcher
+from aiogram import Dispatcher, Bot
 from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove
 from aiogram.dispatcher.filters import Text
 
@@ -10,7 +10,7 @@ from bot.keybords import create_user_balance_kb
 from bot.database.methods import user_methods as commands
 from bot.database.methods import group_methods as group_commands
 
-def user_chat_handlers(dp: Dispatcher):
+def user_chat_handlers(dp: Dispatcher, b: Bot):
     
     @dp.message_handler(Text('Закрыть меню'))
     async def show_top_groups(message: Message):

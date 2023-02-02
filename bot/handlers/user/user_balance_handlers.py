@@ -1,11 +1,11 @@
-from aiogram import Dispatcher
+from aiogram import Dispatcher, Bot
 from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher.filters import Text
 
 from bot.database.methods import user_methods
 from bot.keybords import create_user_balance_kb
 
-def user_balnce_handlers(dp: Dispatcher):
+def user_balnce_handlers(dp: Dispatcher, b: Bot):
     
     @dp.message_handler(Text('Баланс'))
     async def show_balance(message: Message):

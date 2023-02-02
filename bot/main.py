@@ -15,9 +15,9 @@ async def __on_start_up(dp: Dispatcher) -> None:
     await on_startup()
     register_models()
     #register_all_filtres(dp)
-    register_all_handlers(dp)
+    register_all_handlers(dp, settings.bot)
     
 def start_bot():
-    bot = Bot(token=settings.TGTOKEN, parse_mode='HTML')
+    bot = settings.bot 
     dp = Dispatcher(bot, storage=MemoryStorage())
     executor.start_polling(dp, skip_updates=True, on_startup=__on_start_up)

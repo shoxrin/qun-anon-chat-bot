@@ -1,4 +1,4 @@
-from aiogram import Dispatcher
+from aiogram import Dispatcher, Bot
 from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher.filters import Text
 
@@ -9,7 +9,7 @@ from bot.database.methods import user_methods as methods_db
 from bot.database.methods import user_anonim_chat_methods as anonimchat_commands
 
 
-def find_partner_handlers(dp: Dispatcher):
+def find_partner_handlers(dp: Dispatcher, b: Bot):
     
     @dp.message_handler(Text('Найти собеседника'))
     async def find_chat(message: Message):
@@ -21,7 +21,7 @@ def find_partner_handlers(dp: Dispatcher):
         await callback.message.answer(text='Идет поиск! Подождите немного.')
         
         users = await methods_db.get_user_id_anonim()
-        user_id = get_random_anonim_userid(users.user_id, callback.from_user.id)     
+        user_id = get_random_anonim_userid(users, callback.from_user.id).user_id     
         if user_id != callback.from_user.id:
             await anonimchat_commands.add_user_chat(user_id=callback.from_user.id, chat_id=user_id)
             await callback.message.answer(text=f'Собеседник найден!\n'
@@ -35,5 +35,5 @@ def find_partner_handlers(dp: Dispatcher):
     async def join_anonim_chat(callback: CallbackQuery):
         await callback.message.answer(text='Ожидаем ответа!')
         chat_id = await anonimchat_commands.select_chat_id(user_id=callback.from_user.id)
-        send_message(chat_id, 'Вам пришел запрос!')
+        await b.send_message(chat_id=chat_id.chat_id, text='Вам пришел запрос!')
         await callback.answer(show_alert=False)
