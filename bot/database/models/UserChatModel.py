@@ -5,6 +5,6 @@ class UserChatModel(TimedBaseModel):
     __tablename__ = 'UserChat'
     
     user_id = Column(Integer)
-    group_id = Column(Integer)
+    chat_id = Column(Integer)
     
     query: sql.select
