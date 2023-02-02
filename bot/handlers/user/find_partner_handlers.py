@@ -3,8 +3,10 @@ from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher.filters import Text
 
 from bot.keybords import create_find_partner
+from bot.keybords import create_join_partner
 from bot.misc import get_random_anonim_userid
 from bot.database.methods import user_methods as methods_db
+from bot.database.methods import user_anonim_chat_methods as anonimchat_commands
 
 
 def find_partner_handlers(dp: Dispatcher):
@@ -21,13 +23,16 @@ def find_partner_handlers(dp: Dispatcher):
         users = await methods_db.get_user_id_anonim()
         user_id = get_random_anonim_userid(users).user_id     
         if user_id != callback.from_user.id:
-            await callback.message.answer(text=f'Собеседник найден!')
+            await anonimchat_commands.add_user_chat(user_id=callback.from_user.id, chat_id=round((user_id + callback.from_user.id) / 2))
+            await callback.message.answer(text=f'Собеседник найден!\n'
+                                          f'Соеденить?', reply_markup=create_join_partner())
         else:
             await callback.message.answer(text=f'На данный момент собеседников нет!')
             
         await callback.answer(show_alert=False)
         
-    #@dp.callback_query_handler(text='find_anonim')
-    #async def find_anonim(callback: CallbackQuery):
-    #    await callback.message.answer(text='Идет поиск! Подождите немного.')
-    #    await callback.answer(show_alert=False)
+    @dp.callback_query_handler(text='join_anonim_chat')
+    async def join_anonim_chat(callback: CallbackQuery):
+        await callback.message.answer(text='Ожидаем ответа!')
+        chat_id = await anonimchat_commands.select_chat_id(user_id=None)
+        await callback.answer(show_alert=False)
