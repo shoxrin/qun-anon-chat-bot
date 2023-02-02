@@ -17,15 +17,18 @@ def find_partner_handlers(dp: Dispatcher, b: Bot):
 
     @dp.callback_query_handler(text='find_anonim_chat')
     async def find_anonim_chat(callback: CallbackQuery):
-        await methods_db.update_status_anonim(callback.from_user.id, True)
         await callback.message.answer(text='Идет поиск! Подождите немного.')
-        
         users = await methods_db.get_user_id_anonim()
-        user_id = get_random_anonim_userid(users, callback.from_user.id).user_id     
-        if user_id != callback.from_user.id:
-            await anonimchat_commands.add_user_chat(user_id=callback.from_user.id, chat_id=user_id)
-            await callback.message.answer(text=f'Собеседник найден!\n'
-                                          f'Соеденить?', reply_markup=create_join_partner())
+        user_id = get_random_anonim_userid(users, callback.from_user.id)
+        if user_id[1]:
+            if user_id[0].user_id != callback.from_user.id:
+                await methods_db.update_status_anonim(callback.from_user.id, True)
+                await anonimchat_commands.add_user_chat(user_id=callback.from_user.id, chat_id=user_id[0].user_id)
+                await callback.message.answer(text=f'Собеседник найден!\n'
+                                            f'Соеденить?', reply_markup=create_join_partner())
+            else:
+                await methods_db.update_status_anonim(callback.from_user.id, True)
+                await callback.message.answer(text=f'На данный момент собеседников нет!')
         else:
             await callback.message.answer(text=f'На данный момент собеседников нет!')
             
