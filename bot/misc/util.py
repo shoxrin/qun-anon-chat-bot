@@ -5,7 +5,7 @@ import random
 def get_random_anonim_userid(anonim_user_id, user_id):          
     try:
         random_index = random.randint(0, len(anonim_user_id) - 1)
-        if user_id != anonim_user_id[random_index]:
+        if user_id != anonim_user_id[random_index].first_user_id:
             return [anonim_user_id[random_index], True]
         else:
             return [0, False]

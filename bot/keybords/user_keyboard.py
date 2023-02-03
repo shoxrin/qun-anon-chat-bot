@@ -72,6 +72,9 @@ def create_find_partner():
             [
                 InlineKeyboardButton(text='Найти чат', callback_data='find_anonim_chat'),
                 InlineKeyboardButton(text='Создать чат', callback_data='create_anonim_chat'),
+            ],
+            [
+                InlineKeyboardButton(text='Отмена', callback_data='cancel_search_anon_chat'),
             ]
         ]
     )
