@@ -14,11 +14,11 @@ class UserModel(TimedBaseModel):
     user_balance = Column(Integer, default = 0)
     status = Column(String(30))
     status_anonim = Column(Boolean)
+    name_anonim_chat = Column(String(250))
     staus_muted = Column(Boolean)
     status_toxic = Column(Boolean)
     count_words = Column(Integer)
     count_toxic_words = Column(Integer)
-    find_partner = Column(Boolean)
     
     query: sql.select
     

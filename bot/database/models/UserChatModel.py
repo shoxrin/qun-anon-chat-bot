@@ -4,7 +4,7 @@ from bot.database import TimedBaseModel
 class UserChatModel(TimedBaseModel):
     __tablename__ = 'UserChat'
     
-    chat_id = Column(BigInteger)
+    chat_id = Column(BigInteger, primary_key=True)
     chat_name = Column(String(250))
     first_user_id = Column(BigInteger)
     second_user_id = Column(BigInteger)
