@@ -9,7 +9,8 @@ def user_group_handlers(dp: Dispatcher):
     
     @dp.message_handler(Text('Топ чатов'))
     async def show_top_groups(message: Message):
-        await message.answer(text='Выберите фильтр!', reply_markup=create_group_kb())
+        if message.chat.id > 0:
+            await message.answer(text='Выберите фильтр!', reply_markup=create_group_kb())
     
     @dp.callback_query_handler(text='find_top_fifteen')
     async def find_top_fifteen(callback: CallbackQuery):

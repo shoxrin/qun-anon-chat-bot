@@ -41,7 +41,7 @@ def create_user_balance_kb():
     balance_kb = InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text='Отправить другу', callback_data='send_money_friend'),
+                #InlineKeyboardButton(text='Отправить другу', callback_data='send_money_friend'),
                 InlineKeyboardButton(text='Как получать?', callback_data='get_money_info')
             ]
         ]

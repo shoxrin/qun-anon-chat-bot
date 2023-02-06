@@ -40,8 +40,7 @@ async def on_startup():
     if input('Deted database?(y/n): ') == 'y':
         await db.gino.drop_all()
         await db.gino.create_all()
-    else:
-        print('ok')
+        print('База данных успешно создана')
                 
     print('Подключение успешно!')
 

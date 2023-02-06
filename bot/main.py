@@ -15,7 +15,7 @@ async def __on_start_up(dp: Dispatcher) -> None:
     await on_startup()
     register_models()
     #register_all_filtres(dp)
-    register_all_handlers(dp, settings.bot)
+    register_all_handlers(dp)
     
 def start_bot():
     bot = settings.bot 
