@@ -3,6 +3,7 @@ from asyncpg import UniqueViolationError
 from aiogram.types import Message, CallbackQuery
 from aiogram.dispatcher.filters import Text
 
+from bot.misc.settings import bot
 from bot.keybords import create_user_kb
 from bot.keybords import create_find_partner
 from bot.keybords import create_join_partner
@@ -12,7 +13,7 @@ from bot.database.methods import user_methods as methods_db
 from bot.database.methods import user_anonim_chat_methods as anonimchat_commands
 
 
-def find_partner_handlers(dp: Dispatcher, bot: Bot):
+def user_find_partner_handlers(dp: Dispatcher):
     
     #Anonymous chat button handler
     @dp.message_handler(Text('Найти собеседника'))
@@ -32,8 +33,7 @@ def find_partner_handlers(dp: Dispatcher, bot: Bot):
             
             await callback.message.answer(text='Чат был создан! Ищем собеседника.')
             
-        except UniqueViolationError as uve:
-            print(uve)
+        except UniqueViolationError:
             await callback.message.answer(text='Чат уже был создан! Ищем собеседника.')
             
             chat = await anonimchat_commands.select_chat_id(chat_id=round(user_id/2))

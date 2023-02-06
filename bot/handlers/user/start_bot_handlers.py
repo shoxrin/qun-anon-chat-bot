@@ -5,7 +5,7 @@ from bot.keybords import create_user_kb
 from bot.database.methods import user_methods
 
 
-def start_bot_handler(dp: Dispatcher, b: Bot) -> None:
+def start_bot_handler(dp: Dispatcher) -> None:
     
     @dp.message_handler(commands=['start'])
     async def hello_user(message: Message):

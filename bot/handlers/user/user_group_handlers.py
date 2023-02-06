@@ -5,7 +5,7 @@ from aiogram.dispatcher.filters import Text
 from bot.keybords import create_group_kb
 
 
-def user_group_handlers(dp: Dispatcher, b: Bot):
+def user_group_handlers(dp: Dispatcher):
     
     @dp.message_handler(Text('Топ чатов'))
     async def show_top_groups(message: Message):
