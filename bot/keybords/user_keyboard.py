@@ -6,12 +6,12 @@ def create_user_kb():
     user_kb = ReplyKeyboardMarkup(
         keyboard=[
             [
-                KeyboardButton(text='Найти собеседника'),
-                KeyboardButton(text='Профиль'),
+                KeyboardButton(text='Анонимный чат'),
+                #KeyboardButton(text='Профиль'),
             ],
-            [
-                KeyboardButton(text='Топ чатов'),
-            ],
+            #[
+            #    KeyboardButton(text='Топ чатов'),
+            #],
             [
                 KeyboardButton(text='Команды'),
                 KeyboardButton(text='Баланс'),
